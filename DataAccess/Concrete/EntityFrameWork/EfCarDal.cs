@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFrameWork
     {
         public void Add(Car entity)
         {
-            using (NortwindContext context = new NortwindContext())
+            using (ReCapContext context = new ReCapContext())
             {
                 var addedEntitiy = context.Entry(entity);
                 addedEntitiy.State = EntityState.Added;
@@ -25,7 +25,7 @@ namespace DataAccess.Concrete.EntityFrameWork
 
         public void Delete(Car entity)
         {
-            using (NortwindContext context = new NortwindContext())
+            using (ReCapContext context = new ReCapContext())
             {
                 var deletedEntitiy = context.Entry(entity);//refernası yakala
                 deletedEntitiy.State = EntityState.Deleted;//ekle savechange ile olur
@@ -37,7 +37,7 @@ namespace DataAccess.Concrete.EntityFrameWork
 
         public Car Get(Expression<Func<Car, bool>> filter)
         {
-            using (NortwindContext context = new NortwindContext())
+            using (ReCapContext context = new ReCapContext())
             {
                 return context.Set<Car>().SingleOrDefault(filter);
             }
@@ -46,7 +46,7 @@ namespace DataAccess.Concrete.EntityFrameWork
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            using (NortwindContext context = new NortwindContext())
+            using (ReCapContext context = new ReCapContext())
             {
                 return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList();
             }
@@ -54,7 +54,7 @@ namespace DataAccess.Concrete.EntityFrameWork
 
         public void Update(Car entity)
         {
-            using (NortwindContext context = new NortwindContext())
+            using (ReCapContext context = new ReCapContext())
             {
                 var updateedEntitiy = context.Entry(entity);
                 updateedEntitiy.State = EntityState.Modified;
