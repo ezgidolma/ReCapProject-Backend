@@ -23,3 +23,4 @@ namespace DataAccess.Concrete.EntityFrameWork
         public DbSet<Brand> Brands { get; set; }
     }
 }
+//aeykcan.1
