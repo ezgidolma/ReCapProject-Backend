@@ -10,31 +10,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfBrandDal :  EfEntityRepositoryBase<Car, ReCapContext> ,IBrandDal
+    public class EfBrandDal : EfEntityRepositoryBase<Brand, ReCapContext>, IBrandDal
     {
-        public void Add(Brand entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Brand entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Brand Get(Expression<Func<Brand, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Brand entity)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

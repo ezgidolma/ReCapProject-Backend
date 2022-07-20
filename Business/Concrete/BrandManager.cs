@@ -22,7 +22,7 @@ namespace Business.Concrete
         public void Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            Console.WriteLine("Marka başarıyla silindi.");
+            Console.WriteLine("Silme");
             
         }
 
@@ -40,13 +40,13 @@ namespace Business.Concrete
         public void Add(Brand brand)
         {
            _brandDal.Add(brand);
-            Console.WriteLine("Marka başarıyla eklendi");
+            Console.WriteLine("Ekleme");
         }
 
         public void Update(Brand brand)
         {
             _brandDal.Update(brand);
-            Console.WriteLine("Marka başarıyla güncellendi");
+            Console.WriteLine("Güncelleme");
         }
     }
 }

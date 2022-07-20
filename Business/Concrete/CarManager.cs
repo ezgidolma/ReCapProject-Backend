@@ -3,6 +3,7 @@ using Business.Abstract;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Business.Concrete
         public void Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Araba başarıyla silindi");
+            Console.WriteLine("Silme");
         }
 
         public List<Car> GetAll()
@@ -33,31 +34,40 @@ namespace Business.Concrete
 
         public List<Car> GetAllByBrandId(int brandId)
         {
-            var result = _carDal.Get(p => p.Id == brandId);
-            return result;
+            return _carDal.GetAll(p => p.BrandId == brandId);
+            
         }
 
         public List<Car> GetAllByColorId(int colorId)
         {
-            var result = _carDal.Get(p => p.Id == colorId);
-            return result;
-        }
-
-        public Car GetById(int carId)
-        {
+            return _carDal.GetAll(p => p.ColorId == colorId);
             
         }
 
+        
+
         public void Add(Car car)
         {
-            _carDal.Add(car);
-            Console.WriteLine("Araba başarıyla eklendi.");
+            if (car.DailyPrice > 0 && car.Description.Length > 2)
+            {
+                _carDal.Add(car);
+                Console.WriteLine("Ekleme");
+            }
+            else
+            {
+                Console.WriteLine("Ekleme hatası");
+            }
         }
 
         public void Update(Car car)
         {
             _carDal.Update(car);
-            Console.WriteLine("Araba başarıyla güncellendi.");
+            Console.WriteLine("Güncelleme");
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
         }
     } 
 }
