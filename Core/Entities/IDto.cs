@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace Core.Entites
 {
     public interface IDto
     {

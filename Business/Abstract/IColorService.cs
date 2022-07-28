@@ -4,18 +4,19 @@ using Entities.Concrete;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utilities.Results;
 
 namespace Business.Abstract
 {
     public interface IColorService
     {
-        List<Color> GetAll();
-        Color GetById(int colorId);
+        IDataResult<List<Color>> GetAll();
+        IDataResult<Color> GetById(int colorId);
 
-        void Insert(Color color);
+        IResult Add(Color color);
 
-        void Update(Color color);
+        IResult Update(Color color);
 
-        void Delete(Color color);
+        IResult Delete(Color color);
     }
 }

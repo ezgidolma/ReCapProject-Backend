@@ -1,5 +1,8 @@
 ﻿
 using Business.Abstract;
+using Business.Constants;
+using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -21,53 +24,62 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Silme");
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+           
+          return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
-        public List<Car> GetAllByBrandId(int brandId)
+        public IDataResult< List<Car>> GetAllByBrandId(int brandId)
         {
-            return _carDal.GetAll(p => p.BrandId == brandId);
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(p => p.BrandId == brandId));
             
         }
 
-        public List<Car> GetAllByColorId(int colorId)
+        public IDataResult< List<Car>> GetAllByColorId(int colorId)
         {
-            return _carDal.GetAll(p => p.ColorId == colorId);
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(p => p.ColorId == colorId));
             
         }
 
         
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            if (car.DailyPrice > 0 && car.Description.Length > 2)
+            if (car.DailyPrice < 0 && car.Description.Length < 2)
             {
-                _carDal.Add(car);
-                Console.WriteLine("Ekleme");
+                return new ErrorResult(Messages.CarNameInvalid);
+                
             }
             else
             {
-                Console.WriteLine("Ekleme hatası");
+                _carDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
             }
+            
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
-            Console.WriteLine("Güncelleme");
+            return new SuccessResult(Messages.CarUpdated);
+
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult< List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>> (_carDal.GetCarDetails(),Messages.CarDetails);
+        }
+
+        public IDataResult< Car> GetById(int carId)
+        {
+            return new SuccessDataResult<Car> (_carDal.Get(p => p.Id == carId));
         }
     } 
 }

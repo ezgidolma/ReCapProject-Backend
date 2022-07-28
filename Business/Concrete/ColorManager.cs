@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -6,6 +8,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utilities;
+using DataAccess.Concrete.InMemory;
+
 
 namespace Business.Concrete
 {
@@ -18,34 +23,35 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Delete(Entities.Concrete.Color color)
-        {
-            _colorDal.Delete(color);
-            Console.WriteLine("Silme");
-        }
-
-        public List<Entities.Concrete.Color> GetAll()
-        {
-           return  _colorDal.GetAll();
-            
-        }
-
-        public Entities.Concrete.Color GetById(int colorId)
-        {
-
-            return _colorDal.Get(p=>p.Id==colorId);
-        }
-
-        public void Insert(Entities.Concrete.Color color)
+        public IResult Add(Entities.Concrete.Color color)
         {
             _colorDal.Add(color);
-            Console.WriteLine("Ekleme");
+            return new SuccessResult(Messages.ColorAdded);
         }
 
-        public void Update(Entities.Concrete.Color color)
+        public IResult Delete(Entities.Concrete.Color color)
+        {
+            _colorDal.Delete(color);
+            return new SuccessResult(Messages.ColorDeleted);
+        }
+
+        public IDataResult<List<Color>> GetAll()
+        {
+
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsListed);
+        }
+
+        public IDataResult<Color> GetById(int colorId)
+        {
+            return new SuccessDataResult<Color>(_colorDal.Get(p => p.Id == colorId));
+        }
+
+        public IResult Update(Entities.Concrete.Color color)
         {
             _colorDal.Update(color);
-            Console.WriteLine("Güncelleme");
+            return new SuccessResult(Messages.ColorUpdated);
         }
+
+        
     }
 }
