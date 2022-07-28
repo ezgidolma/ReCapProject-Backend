@@ -2,32 +2,30 @@
 using DataAccess.Concrete.EntityFrameWork;
 using System;
 
-namespace ConsoleUI {
+namespace ConsoleUI
+{
     class Program
     {
         static void Main()
         {
-            CarTest();
+            
+        }
 
-            //BrandTest();
-
-            static void CarTest()
+        private static void GetByColor(CarManager carManager)
+        {
+            Console.WriteLine("\nColor id 1:");
+            foreach (var car in carManager.GetAllByColorId(1).Data)
             {
-                CarManager carManager = new CarManager(new EfCarDal());
-                foreach (var car in carManager.GetCarDetails())
-                {
-                    Console.WriteLine(car.CarName+ "/" +car.BrandName+"/"+car.CarId+"/"+car.ColorName);
-                }
+                Console.WriteLine("{0}\t {1} \t {2}", car.Id, car.ModelYear, car.Description);
             }
         }
 
-        private static void BrandTest()
+        private static void GetByBrand(CarManager carManager)
         {
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll())
+            Console.WriteLine("\nBrand id 3:");
+            foreach (var car in carManager.GetAllByBrandId(3).Data)
             {
-                Console.WriteLine(brand.Name);
-
+                Console.WriteLine("{0}\t {1} \t {2}", car.Id, car.ModelYear, car.Description);
             }
         }
     }

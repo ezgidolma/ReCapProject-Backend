@@ -4,13 +4,14 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Utilities;
 using DataAccess.Concrete.InMemory;
-
+using DataAccess.Concrete.EntityFrameWork;
+using Entities.Concrete;
 
 namespace Business.Concrete
 {
