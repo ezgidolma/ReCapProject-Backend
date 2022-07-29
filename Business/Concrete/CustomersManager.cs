@@ -1,4 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,37 +12,42 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class CustomersManager:ICustomersDal
+    public class CustomersManager:ICustomersService
     {
-        ICustomersDal customersDal;
+        ICustomersDal _customersDal;
         public CustomersManager(ICustomersDal customersDal)
         {
-            this.customersDal = customersDal;
+            _customersDal = customersDal;
+        }
+         
+        public IResult Add(Customers customers)
+        {
+            _customersDal.Add(customers);
+            return new SuccessResult(Messages.CustomersAdded);
         }
 
-        public void Add(Customers entity)
+        public IResult Delete(Customers customers)
         {
-            throw new NotImplementedException();
+            _customersDal.Delete(customers);
+            return new SuccessResult(Messages.CustomerslDeleted);
         }
 
-        public void Delete(Customers entity)
+       
+
+        public IDataResult<List<Customers>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Customers>>(_customersDal.GetAll(), Messages.BrandsListed);
         }
 
-        public Customers Get(Expression<Func<Customers, bool>> filter)
+        public IDataResult<Customers> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Customers>(_customersDal.Get(p => p.UserId == id));
         }
 
-        public List<Customers> GetAll(Expression<Func<Customers, bool>> filter = null)
+        public IResult Update(Customers customers)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Customers entity)
-        {
-            throw new NotImplementedException();
+            _customersDal.Update(customers);
+            return new SuccessResult(Messages.CustomersUpdated);
         }
     }
 }

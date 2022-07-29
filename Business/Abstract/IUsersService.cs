@@ -18,6 +18,6 @@ namespace Business.Abstract
         IResult Delete(Users users);
         IDataResult<List<Users>> GetAll();
         IDataResult<Users> GetById(int id);
-        IDataResult<List<UsersDetailDto>> GetUserDetails();
+        
     }
 }

@@ -1,5 +1,9 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,37 +13,48 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class UsersManager:IUsersDal
+    public class UsersManager:IUsersService
     {
-        IUsersDal usersDal;
+        IUsersDal _usersDal;
         public UsersManager(IUsersDal usersDal)
         {
-            this.usersDal = usersDal;
+           _usersDal = usersDal;
         }
 
-        public void Add(Users entity)
+        public IResult Add(Users users)
         {
-            throw new NotImplementedException();
+            if (users.FirstName.Length > 1)
+            {
+                _usersDal.Add(users);
+                return new SuccessResult(Messages.UsersAdded);
+
+            }
+            return new ErrorResult(Messages.UsersNameInvalid);
         }
 
-        public void Delete(Users entity)
+        public IResult Delete(Users users)
         {
-            throw new NotImplementedException();
+            _usersDal.Delete(users);
+            return new SuccessResult(Messages.UsersDeleted);
         }
 
-        public Users Get(Expression<Func<Users, bool>> filter)
+      
+        public IDataResult<List<Users>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Users>>(_usersDal.GetAll(), Messages.UsersListed);
         }
 
-        public List<Users> GetAll(Expression<Func<Users, bool>> filter = null)
+        public IDataResult<Users> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Users>(_usersDal.Get(p => p.Id == id));
         }
 
-        public void Update(Users entity)
+        
+
+        public IResult Update(Users users)
         {
-            throw new NotImplementedException();
+            _usersDal.Update(users);
+            return new SuccessResult(Messages.UsersUpdated);
         }
     }
 }

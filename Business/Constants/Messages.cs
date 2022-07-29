@@ -15,7 +15,8 @@ namespace Business.Constants
         public static string CarDailyPriceNullException = "Araç fiyatı 0 olamaz.";
         public static string CarDeleted = "Araç sistemden silindi.";
         public static string CarUpdated = "Araç güncellendi.";
-     
+        public static string CarDetails = "Araçlar string formatında detaylı bir şekilde listelendi.";
+
 
         public static string BrandAdded = "Marka sisteme eklendi.";
         public static string BrandNameInvalid = "Marka ismi geçersiz.";
@@ -27,6 +28,29 @@ namespace Business.Constants
         public static string ColorDeleted = "Renk sistemden silindi.";
         public static string ColorUpdated = "Renk güncellendi.";
         public static string ColorsListed = "Renkler listelendi.";
-        public static string CarDetails = "Araçlar string formatında detaylı bir şekilde listelendi.";
+        public static string ColorDetails = "Renkler string formatında detaylı bir şekilde listelendi.";
+        public static string ColorNameInvalid = "Renk ismi geçersiz.";
+
+        public static string UsersAdded = "Kullanıcı sisteme eklendi.";
+        public static string UsersDeleted = "Kullanıcı sistemden silindi.";
+        public static string UsersUpdated = "Kullanıcı güncellendi.";
+        public static string UsersListed = "Kullanıcılar listelendi.";
+        public static string UsersDetails = "Kullanıcılar string formatında detaylı bir şekilde listelendi.";
+        public static string UsersNameInvalid = "Kullanıcı ismi geçersiz.";
+
+        public static string RentalsAdded = "Kiralama sisteme eklendi.";
+        public static string RentaslDeleted = "Kiralama sistemden silindi.";
+        public static string RentalsUpdated = "Kiralama güncellendi.";
+        public static string RentalsListed = "Kiralamalar listelendi.";
+        public static string RentalsDetails = "Kiralamalar string formatında detaylı bir şekilde listelendi.";
+        public static string RentalsNameInvalid = "Kiralama ismi geçersiz.";
+
+        public static string CustomersAdded = "Müşteri sisteme eklendi.";
+        public static string CustomerslDeleted = "Müşteri sistemden silindi.";
+        public static string CustomersUpdated = "Müşteri güncellendi.";
+        public static string CustomersListed = "Müşteriler listelendi.";
+        public static string CustomersDetails = "Müşteriler string formatında detaylı bir şekilde listelendi.";
+        public static string CustomersNameInvalid = "Müşteri ismi geçersiz.";
+
     }
 }

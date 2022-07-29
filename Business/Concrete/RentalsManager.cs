@@ -1,4 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class RentalsManager:IRentalsDal
+    public class RentalsManager:IRentalsService
     {
         IRentalsDal _rentalsDal;
 
@@ -18,29 +21,38 @@ namespace Business.Concrete
             _rentalsDal = rentalsDal;
         }
 
-        public void Add(Rentals entity)
+        public IResult Add(Rentals rentals)
         {
-            throw new NotImplementedException();
+            if (rentals.ReturnDate < DateTime.Now || rentals.ReturnDate == null)
+            {
+                return new ErrorResult(Messages.RentalsNameInvalid);
+            }
+            _rentalsDal.Add(rentals);
+            return new SuccessResult(Messages.RentalsAdded);
         }
 
-        public void Delete(Rentals entity)
+        public IResult Delete(Rentals rentals)
         {
-            throw new NotImplementedException();
+           _rentalsDal.Delete(rentals);
+            return new SuccessResult(Messages.RentaslDeleted);
         }
 
-        public Rentals Get(Expression<Func<Rentals, bool>> filter)
+
+        
+        public IDataResult<List<Rentals>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Rentals>>(_rentalsDal.GetAll(), Messages.BrandsListed);
         }
 
-        public List<Rentals> GetAll(Expression<Func<Rentals, bool>> filter = null)
+        public IDataResult<Rentals> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Rentals>(_rentalsDal.Get(p => p.Id == id));
         }
 
-        public void Update(Rentals entity)
+        public IResult Update(Rentals rentals)
         {
-            throw new NotImplementedException();
+            _rentalsDal.Update(rentals);
+            return new SuccessResult(Messages.RentalsUpdated);
         }
     }
 }
