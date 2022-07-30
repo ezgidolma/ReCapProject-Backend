@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IUsersService
+    public interface IUserService
     {
-        IResult Add(Users users );
+        IResult Add(User users );
 
-        IResult Update(Users users);
+        IResult Update(User users);
 
-        IResult Delete(Users users);
-        IDataResult<List<Users>> GetAll();
-        IDataResult<Users> GetById(int id);
+        IResult Delete(User users);
+        IDataResult<List<User>> GetAll();
+        IDataResult<User> GetById(int id);
         
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfUsersDal : EfEntityRepositoryBase<Users, ReCapContext>, IUsersDal
+    public class EfUserDal : EfEntityRepositoryBase<User, ReCapContext>, IUserDal
     {
 
     }

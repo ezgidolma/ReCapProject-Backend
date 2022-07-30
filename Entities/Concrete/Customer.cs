@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Customers:IEntity
+    [Keyless]
+    public class Customer:IEntity
     {
         public int UserId { get; set; }
         public string CompanyName { get; set; }

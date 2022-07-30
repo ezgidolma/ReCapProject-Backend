@@ -13,47 +13,47 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class UsersManager:IUsersService
+    public class UserManager:IUserService
     {
-        IUsersDal _usersDal;
-        public UsersManager(IUsersDal usersDal)
+        IUserDal _userDal;
+        public UserManager(IUserDal userDal)
         {
-           _usersDal = usersDal;
+           _userDal = userDal;
         }
 
-        public IResult Add(Users users)
+        public IResult Add(User user)
         {
-            if (users.FirstName.Length > 1)
+            if (user.FirstName.Length > 1)
             {
-                _usersDal.Add(users);
+                _userDal.Add(user);
                 return new SuccessResult(Messages.UsersAdded);
 
             }
             return new ErrorResult(Messages.UsersNameInvalid);
         }
 
-        public IResult Delete(Users users)
+        public IResult Delete(User user)
         {
-            _usersDal.Delete(users);
+            _userDal.Delete(user);
             return new SuccessResult(Messages.UsersDeleted);
         }
 
       
-        public IDataResult<List<Users>> GetAll()
+        public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<Users>>(_usersDal.GetAll(), Messages.UsersListed);
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
         }
 
-        public IDataResult<Users> GetById(int id)
+        public IDataResult<User> GetById(int id)
         {
-            return new SuccessDataResult<Users>(_usersDal.Get(p => p.Id == id));
+            return new SuccessDataResult<User>(_userDal.Get(p => p.Id == id));
         }
 
         
 
-        public IResult Update(Users users)
+        public IResult Update(User user)
         {
-            _usersDal.Update(users);
+            _userDal.Update(user);
             return new SuccessResult(Messages.UsersUpdated);
         }
     }

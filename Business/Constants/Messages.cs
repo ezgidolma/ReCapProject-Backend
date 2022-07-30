@@ -38,7 +38,8 @@ namespace Business.Constants
         public static string UsersDetails = "Kullanıcılar string formatında detaylı bir şekilde listelendi.";
         public static string UsersNameInvalid = "Kullanıcı ismi geçersiz.";
 
-        public static string RentalsAdded = "Kiralama sisteme eklendi.";
+        public static string RentalAdded = "Kiralama sisteme eklendi.";
+        public static string RentalNotAdded = "Kiralama sisteme eklenemedi.";
         public static string RentaslDeleted = "Kiralama sistemden silindi.";
         public static string RentalsUpdated = "Kiralama güncellendi.";
         public static string RentalsListed = "Kiralamalar listelendi.";
