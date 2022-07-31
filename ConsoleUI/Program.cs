@@ -10,11 +10,8 @@ namespace ConsoleUI
         static void Main()
         {
 
-
-
-            UserManager userManager = new UserManager(new EfUserDal());
-            
-            ListUsers(userManager);
+           // BrandTest();
+            UsersManagerTest();
             //AddCustomers(customerManager);
             //RentalManager rentalManager = new RentalManager(new EfRentalDal());
             //AddRentals(rentalManager);
@@ -22,7 +19,37 @@ namespace ConsoleUI
 
 
         }
+        private static void BrandTest()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            Brand brand = new Brand { Id = 2, Name = "BMW" };
+            brandManager.Delete(brand);
+            var result = brandManager.GetAll();
+            foreach (var item in result.Data)
+            {
+                Console.WriteLine(item.Name);
+            }
+            Console.WriteLine(brandManager.GetById(1).Data.Name);
+        }
 
+        private static void UsersManagerTest()
+        {
+            UserManager sM = new UserManager(new EfUserDal());
+            User u1 = new User { Id = 8, FirstName = "FirstName User3", LastName = "LastName user3", Email = "user3@gmail.com", Password = 12 };
+            sM.Add(u1);
+            var result = sM.GetAll();
+            if (result.Success)
+            {
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.FirstName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
         private static void ListRentals(RentalManager rentalManager)
         {
             var rentals = rentalManager.GetAll();
