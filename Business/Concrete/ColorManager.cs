@@ -12,6 +12,8 @@ using Core.Utilities;
 using DataAccess.Concrete.InMemory;
 using DataAccess.Concrete.EntityFrameWork;
 using Entities.Concrete;
+using Core.CrossCuttingConcerns.Validation;
+using Business.ValidationRules.FluentValidation;
 
 namespace Business.Concrete
 {
@@ -26,6 +28,7 @@ namespace Business.Concrete
 
         public IResult Add(Entities.Concrete.Color color)
         {
+            ValidationTool.Validate(new ColorValidator(), color);
             _colorDal.Add(color);
             return new SuccessResult(Messages.ColorAdded);
         }
