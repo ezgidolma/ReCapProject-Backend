@@ -53,5 +53,6 @@ namespace Business.Constants
         public static string CustomersDetails = "Müşteriler string formatında detaylı bir şekilde listelendi.";
         public static string CustomersNameInvalid = "Müşteri ismi geçersiz.";
 
+        public static string CarImageAdded { get; internal set; }
     }
 }

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Utilities.Helpers
+namespace Core.Utilities.Helpers.FileHelper
 {
-    public class FileHelpManager:IFileHelper
+    public class FileHelpManager : IFileHelper
     {
         public string Upload(IFormFile file, string root)
         {
