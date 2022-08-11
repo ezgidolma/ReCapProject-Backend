@@ -50,6 +50,7 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 
+app.UseCors(builder => builder.WithOrigins("http://localhost").AllowAnyHeader());
 app.UseAuthorization();
 
 app.MapControllers();

@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAPI.Controllers
 {
@@ -89,5 +90,6 @@ namespace WebAPI.Controllers
 
                 return BadRequest(result);
             }
+
         }
     }

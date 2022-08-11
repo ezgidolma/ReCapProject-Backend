@@ -8,9 +8,11 @@ namespace Core.Utilities.Helpers.GuidHelper
 {
     public class GuidHelper
     {
-        public static string CreateGuild()
+        public static string CreateGuid()
         {
+
             return Guid.NewGuid().ToString();
+
         }
     }
 }

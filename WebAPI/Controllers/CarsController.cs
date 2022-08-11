@@ -40,6 +40,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpPost("add")]
         public IActionResult Post(Car car)
         {
@@ -50,5 +51,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+              
+      
     }
 }

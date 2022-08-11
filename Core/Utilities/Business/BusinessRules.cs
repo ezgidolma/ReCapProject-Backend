@@ -9,9 +9,9 @@ namespace Core.Utilities.Business
 {
     public class BusinessRules
     {
-        public static IResult Run(params IResult[] logigcs)//params verdiğim zaman Run metodu içerisine istediğim kadar parametre olarak IResult verebiliyorum.Gönderdiğimiz bütün parametreleri array haline getirip logics'e atanıyor.
+        public static IResult Run(params IResult[] logics)//params verdiğim zaman Run metodu içerisine istediğim kadar parametre olarak IResult verebiliyorum.Gönderdiğimiz bütün parametreleri array haline getirip logics'e atanıyor.
         {
-            foreach (var logic in logigcs)//logics : İş kurallarım.
+            foreach (var logic in logics)//logics : İş kurallarım.
             {
                 if (!logic.Success)//Başarısız olan iş kuralım olursa
                 {
