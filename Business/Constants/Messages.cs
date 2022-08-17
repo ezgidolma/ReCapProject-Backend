@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,5 +55,6 @@ namespace Business.Constants
         public static string CustomersNameInvalid = "Müşteri ismi geçersiz.";
 
         public static string CarImageAdded { get; internal set; }
+        public static string AuthorizationDenied="asddsf";
     }
 }

@@ -1,7 +1,7 @@
-﻿using Castle.Core.Configuration;
-using Core.Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Core.Extensions;
 using Core.Utilities.Security.Encryption;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -16,20 +16,20 @@ namespace Core.Utilities.Security.JWT
 
     public class JwtHelper : ITokenHelper
     {
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }//WEB APİ'deki json uzantılı dosyayı okumamıza yarıyor
         private TokenOptions _tokenOptions;
         private DateTime _accessTokenExpiration;
         public JwtHelper(IConfiguration configuration)
         {
             Configuration = configuration;
-            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();//appsettingekileri tek tek diğer token'a aktarma
 
         }
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
-            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
-            var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
-            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
+            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);//token ne zaman bitecek
+            var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);//security key oluşturmaya yarar
+            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);//hangi anahtar ve algoritmayı kullanacağını söyler 
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var token = jwtSecurityTokenHandler.WriteToken(jwt);
