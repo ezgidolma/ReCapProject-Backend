@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFrameWork;
 using Entities.Concrete;
 using System;
@@ -35,7 +36,7 @@ namespace ConsoleUI
         private static void UsersManagerTest()
         {
             UserManager sM = new UserManager(new EfUserDal());
-            User u1 = new User { Id = 8, FirstName = "FirstName User3", LastName = "LastName user3", Email = "user3@gmail.com", Password = 12 };
+            User u1 = new User { Id = 8, FirstName = "FirstName User3", LastName = "LastName user3", Email = "user3@gmail.com" };
             sM.Add(u1);
             var result = sM.GetAll();
             if (result.Success)
@@ -71,14 +72,14 @@ namespace ConsoleUI
             var rentals = userManager.GetAll();
             foreach (var rental in rentals.Data)
             {
-                Console.WriteLine("Id: {0}, Email: {1}, Password: {2}, FirstName{3}, LastName{4}",rental.Id,rental.Email,rental.Password,rental.FirstName,rental.LastName);
+                Console.WriteLine("Id: {0}, Email: {1}, Password: {2}, FirstName{3}, LastName{4}",rental.Id,rental.Email,rental.FirstName,rental.LastName);
             }
         }
         private static void AddUsers(UserManager userManager)
         {
-            User user1 = new User { Id = 1, FirstName = "FirstName1", LastName = "LastName1", Email = "email1@email1.com", Password = 1 };
-            User user2 = new User { Id = 2, FirstName = "FirstName2", LastName = "LastName2", Email = "email2@email2.com", Password = 2 };
-            User user3 = new User { Id = 3, FirstName = "FirstName3", LastName = "LastName3", Email = "email3@email3.com", Password =22 };
+            User user1 = new User { Id = 1, FirstName = "FirstName1", LastName = "LastName1", Email = "email1@email1.com" };
+            User user2 = new User { Id = 2, FirstName = "FirstName2", LastName = "LastName2", Email = "email2@email2.com" };
+            User user3 = new User { Id = 3, FirstName = "FirstName3", LastName = "LastName3", Email = "email3@email3.com"};
 
             userManager.Add(user1);
             userManager.Add(user2);

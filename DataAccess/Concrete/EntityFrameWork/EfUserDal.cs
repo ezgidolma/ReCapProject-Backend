@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.EntityFramework;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -10,8 +11,20 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, ReCapContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<Core.Entities.Concrete.User, ReCapContext>, IUserDal
     {
+        public List<OperationClaim> GetClaims(Core.Entities.Concrete.User user)
+        {
+            using (var context = new ReCapContext())
+            {
+                var result = from operationClaim in context.OperationClaims
+                             join userOperationClaim in context.UserOperationClaims
+                                 on operationClaim.Id equals userOperationClaim.OperationClaimId
+                             where userOperationClaim.UserId == user.Id
+                             select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
+                return result.ToList();
 
+            }
+        }
     }
 }
