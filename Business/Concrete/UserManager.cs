@@ -25,7 +25,7 @@ namespace Business.Concrete
            _userDal = userDal;
         }
 
-        [ValidationAspect(typeof(UserManager))]
+       
         public IResult Add(User user)
         {
             

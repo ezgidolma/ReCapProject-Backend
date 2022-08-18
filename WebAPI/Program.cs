@@ -3,10 +3,15 @@ using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
 using Business.DependencyResolvers.Autofac;
+using Core.Utilities.Ioc;
+using Core.Utilities.Security.Encryption;
+using Core.Utilities.Security.JWT;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
-
+using DataAccess.Concrete.EntityFrameWork;
+using Entities.Concrete;
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -63,7 +68,7 @@ namespace WebApi
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:7266").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:7275").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

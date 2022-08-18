@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfUserDal : EfEntityRepositoryBase<Core.Entities.Concrete.User, ReCapContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<User, ReCapContext>, IUserDal
     {
-        public List<OperationClaim> GetClaims(Core.Entities.Concrete.User user)
+        public List<OperationClaim> GetClaims(User user)
         {
             using (var context = new ReCapContext())
             {
