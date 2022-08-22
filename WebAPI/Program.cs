@@ -6,14 +6,14 @@ using Business.DependencyResolvers.Autofac;
 using Core.Utilities.Ioc;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
-using Core.Utilities.Security.Encryption;
-using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFrameWork;
 using Entities.Concrete;
 using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Core.Extensions;
+using Core.DependencyResolvers;
 
 namespace WebApi
 {
@@ -29,7 +29,6 @@ namespace WebApi
             var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
 
-            //services.addSingleton<IHttpContextAccessor,HttpContextAccessor>() ;
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -44,8 +43,11 @@ namespace WebApi
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            // ServiceTool.Create(services);
 
+            builder.Services.AddDependencyResolvers(new ICoreModule[]{//modülleri ekleme yeri
+                new CoreModule()
+
+            });
 
 
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -53,8 +55,7 @@ namespace WebApi
             {
                 builder.RegisterModule(new AutofacBusinessModule());
             });
-            //builder.Services.AddSingleton<IProductService,ProductManager>();
-            //builder.Services.AddSingleton<IProductDal, EfProductDal>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -68,15 +69,13 @@ namespace WebApi
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:7275").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:7266").AllowAnyHeader());//local7266 den gelen her þeye cevap ver
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseAuthentication();//eve girmek için anahtar sadece giriþ
 
-            app.UseAuthentication();
-
-            app.UseAuthorization();
+            app.UseAuthorization();//evde ne yapýlabilir
 
             app.MapControllers();
 
@@ -88,10 +87,10 @@ namespace WebApi
 
 
 
-
-
-
         }
+
+
+        
 
 
     }
