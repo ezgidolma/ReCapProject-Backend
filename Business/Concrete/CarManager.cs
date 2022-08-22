@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
         }
 
-        
+        [CacheAspect]//key,value
         public IDataResult<List<Car>> GetAll()
         {
            
@@ -55,7 +55,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("car.add")]
+        // [SecuredOperation("car.add")]
         [ValidationAspect(typeof(CarValidator))]
 
         public IResult Add(Car car)

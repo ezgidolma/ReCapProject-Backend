@@ -19,4 +19,8 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.22.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CrossCuttingConcerns\Caching\Redis\" />
+  </ItemGroup>
+
 </Project>
