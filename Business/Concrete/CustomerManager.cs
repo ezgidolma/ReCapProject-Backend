@@ -5,6 +5,7 @@ using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,11 @@ namespace Business.Concrete
         {
             _customerDal = customerDal;
         }
-         
+        public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails());
+        }
+
         public IResult Add(Customer customer)
         {
             ValidationTool.Validate(new CustomerValidator(), customer);

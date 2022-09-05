@@ -16,10 +16,19 @@ namespace WebAPI.Controllers
             _customerService = customerService;
         }
 
+        [HttpGet("getCustomerDetails")]
+        public IActionResult GetCustomerDetails()
+        {
+            var result = _customerService.GetCustomerDetails();
+            if (result.Success) return Ok(result);
+            return BadRequest(result);
+        }
+
 
         [HttpGet("getall")]
         public IActionResult Get()
         {
+            Thread.Sleep(5000);
             var result = _customerService.GetAll();
             if (result.Success)
             {

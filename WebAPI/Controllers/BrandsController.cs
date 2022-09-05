@@ -17,8 +17,10 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("getall")]
+       
         public IActionResult Get()
         {
+            Thread.Sleep(5000);
             var result = _brandService.GetAll();
             if (result.Success)
             {

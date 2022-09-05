@@ -69,7 +69,7 @@ namespace WebApi
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:7266").AllowAnyHeader());//local7266 den gelen her þeye cevap ver
+            app.UseCors(builder => builder.WithOrigins("http://localhost:64872").AllowAnyHeader());//local7266 den gelen her þeye cevap ver
 
             app.UseHttpsRedirection();
 
