@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            Thread.Sleep(5000);
+            
             var result = _colorService.GetAll();
             if (result.Success)
             {
