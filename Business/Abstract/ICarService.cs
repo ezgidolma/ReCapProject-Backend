@@ -12,13 +12,12 @@ namespace Business.Abstract
     public interface ICarService
     {
         IDataResult<List<Car>>GetAll();
-        IDataResult<List<Car>> GetAllByBrandId(int brandId);
-        IDataResult<List<Car>> GetAllByColorId(int colorId);
-        IDataResult<Car> GetById(int carId);
+        IDataResult<List<CarDetailDto>> GetAllByBrandId(int brandId);
+        IDataResult<List<CarDetailDto>> GetAllByColorId(int colorId);
         IResult Add(Car car);
         IResult Update(Car car);
         IResult Delete(Car car);
         IDataResult<List<CarDetailDto>> GetCarDetails();//uygulamalarda tutarlılığı korumak için yaptığımız bir yöntem
-        IResult AddTransactionalTest(Car car);
+ 
     }
 }

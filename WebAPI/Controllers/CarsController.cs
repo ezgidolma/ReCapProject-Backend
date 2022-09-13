@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            Thread.Sleep(5000);
+            
             var result= _carService.GetAll();
             if (result.Success)
             {
@@ -31,17 +31,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
-        {
-            var result = _carService.GetById(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
+      
         [HttpGet("getbybrand")]
         public IActionResult GetByBrand(int brandId)
         {

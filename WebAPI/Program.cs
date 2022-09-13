@@ -72,6 +72,7 @@ namespace WebApi
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());//local7266 den gelen her þeye cevap ver
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseAuthentication();//eve girmek için anahtar sadece giriþ
 

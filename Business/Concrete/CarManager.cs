@@ -45,21 +45,18 @@ namespace Business.Concrete
            
           return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
-
-        public IDataResult< List<Car>> GetAllByBrandId(int brandId)
+        public IDataResult<List<CarDetailDto>> GetAllByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>( _carDal.GetAll(p => p.BrandId == brandId));
-            
-        }
-
-        public IDataResult< List<Car>> GetAllByColorId(int colorId)
-        {
-            return new SuccessDataResult<List<Car>>( _carDal.GetAll(p => p.ColorId == colorId));
-            
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(p =>p.BrandId == brandId));
         }
 
 
-         [SecuredOperation("car.add")]
+        public IDataResult<List<CarDetailDto>> GetAllByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(p => p.ColorId== colorId));
+        }
+
+        [SecuredOperation("car.add")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
@@ -90,16 +87,6 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Car> (_carDal.Get(p => p.Id == carId));
         }
-        [TransactionScopeAspect]
-        public IResult AddTransactionalTest(Car car)
-        {
-            Add(car);
-            if (car.DailyPrice<10)
-            {
-                throw new Exception("");
-            }
-            Add(car);
-            return null;    
-        }
+        
     } 
 }
