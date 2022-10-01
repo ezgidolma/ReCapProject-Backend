@@ -18,6 +18,9 @@ namespace Business.Abstract
         IResult Update(Car car);
         IResult Delete(Car car);
         IDataResult<List<CarDetailDto>> GetCarDetails();//uygulamalarda tutarlılığı korumak için yaptığımız bir yöntem
- 
+
+        IDataResult<List<CarDetailDto>> GetByCarId(int carId);
+        IDataResult<List<CarDetailDto>> GetCarFilter(int colorId, int brandId);
+
     }
 }

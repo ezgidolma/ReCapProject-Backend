@@ -55,6 +55,8 @@ namespace Business.Constants
         public static string CustomersNameInvalid = "Müşteri ismi geçersiz.";
 
         public static string CarImageAdded { get; internal set; }
+        public static string CarListed { get; internal set; }
+
         public static string AuthorizationDenied="Kullanıcı yetkisi geçersiz";
     }
 }
