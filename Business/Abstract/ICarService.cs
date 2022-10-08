@@ -20,7 +20,12 @@ namespace Business.Abstract
         IDataResult<List<CarDetailDto>> GetCarDetails();//uygulamalarda tutarlılığı korumak için yaptığımız bir yöntem
 
         IDataResult<List<CarDetailDto>> GetByCarId(int carId);
-        IDataResult<List<CarDetailDto>> GetCarFilter(int colorId, int brandId);
+
+       
+        IDataResult<List<CarDetailDto>> GetCarDetailsByColorAndByBrand(int colorId, int brandId);
+       
+
+
 
     }
 }
